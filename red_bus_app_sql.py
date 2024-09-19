@@ -1,12 +1,11 @@
-import cartopy
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pymysql
 
 
 rb_df = pd.read_csv('Red_bus_df.csv')
 
+# append to each list of route names of each state
 df_a = pd.read_csv('andhra_route_details.csv')
 l_a=[]
 for i in df_a['Route_name']:
@@ -57,8 +56,10 @@ l_w=[]
 for i in df_w['Route_name']:
     l_w.append(i)
 
+#radio button has home page and Book your ticket page
 sb = st.sidebar.radio(label="Choose your option",options=[":house: Home",":motorway: Book your ticket"])
 
+#It has description of App in the home page
 if sb == ":house: Home":
     st.title(":rainbow[Welcome to Red Bus App] :bus:")
     st.header(":blue-background[App Description]",divider="blue")
@@ -100,7 +101,7 @@ if sb == ":house: Home":
     st.markdown("**Transportation**")
     st.header(':blue-background[Created by]',divider="blue")
     st.markdown(":rainbow[**ANESHA NAGARAJAN**]")
-
+#Book your ticket has customised result based on state,bus route name,bus type,rating and price
 if sb == ":motorway: Book your ticket":
     st.title("Book your ticket")
     myconnection = pymysql.connect(host='127.0.0.1',user='root',passwd='@neSre11',database='redbus')
